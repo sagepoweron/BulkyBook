@@ -2,10 +2,13 @@
 using BulkyBook.Data;
 using Microsoft.AspNetCore.Mvc;
 using BulkyBook.Data.Repository.IRepository;
+using BulkyBook.Utilities;
+using Microsoft.AspNetCore.Authorization;//116
 
 namespace BulkyBookWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]//116
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitofwork;
@@ -14,15 +17,16 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         {
             _unitofwork = unitofwork;
         }
-
-        public IActionResult Index()
+		//[Authorize(Roles = SD.Role_Admin)]//116
+		public IActionResult Index()
         {
             IEnumerable<Category> objCategoryList = _unitofwork.Category.GetAll();
             return View(objCategoryList);
         }
 
-        //GET
-        public IActionResult Create()
+		//GET
+		//[Authorize(Roles = SD.Role_Admin)]//116
+		public IActionResult Create()
         {
             return View();
         }

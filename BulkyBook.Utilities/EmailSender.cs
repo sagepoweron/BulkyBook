@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BulkyBook.Utilities
 {
-    public class EmailSender : IEmailSender //video 111
+    public class EmailSender : IEmailSender //111
     {
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
